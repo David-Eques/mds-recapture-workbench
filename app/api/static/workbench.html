@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f3f5f2">
+  <title>MDS Recapture Workbench</title>
+  <link rel="stylesheet" href="/static/workbench.css">
+</head>
+<body>
+  <a class="skip" href="#workspace">Skip to case intake</a>
+  <header class="masthead">
+    <a class="wordmark" href="/" aria-label="MDS Recapture home">
+      <span class="mark" aria-hidden="true">M</span>
+      <span>MDS Recapture</span>
+    </a>
+    <div class="status-line"><span class="status-mark" aria-hidden="true"></span> Local processing, de-identified data only</div>
+  </header>
+
+  <main id="workspace">
+    <section class="intro" aria-labelledby="page-title">
+      <p class="kicker">Document-supported coding review</p>
+      <h1 id="page-title">Upload the assessment.<br>Interrogate the record.</h1>
+      <p class="lede">The workbench compares structured clinical signals and conservatively qualified OCR text against the as-coded MDS, then runs proposed changes through the official CMS grouper.</p>
+    </section>
+
+    <section class="intake-grid" aria-label="Case intake">
+      <form id="case-form" class="intake" novalidate>
+        <div class="form-head">
+          <div>
+            <span class="step-number">01</span>
+            <h2>Case files</h2>
+          </div>
+          <p>Files are processed for this request and are not retained by the application.</p>
+        </div>
+
+        <label class="field" for="assessment">
+          <span class="field-label">MDS assessment <strong>Required</strong></span>
+          <span class="field-help">Conformant MDS XML or canonical JSON</span>
+          <input id="assessment" name="assessment" type="file" accept=".xml,.json,application/xml,application/json" required>
+          <span class="file-state" data-file-state="assessment">No assessment selected</span>
+        </label>
+
+        <label class="field" for="documents">
+          <span class="field-label">Clinical documents</span>
+          <span class="field-help">PDF, PNG, JPEG, TIFF, TXT, or Markdown. Up to 10 files; each requires a trusted document date.</span>
+          <input id="documents" name="documents" type="file" accept=".pdf,.png,.jpg,.jpeg,.tif,.tiff,.txt,.md,application/pdf,image/png,image/jpeg,image/tiff,text/plain,text/markdown" multiple>
+          <span class="file-state" data-file-state="documents">No clinical documents selected</span>
+        </label>
+        <div id="document-metadata" class="metadata-list" aria-live="polite"></div>
+
+        <label class="field optional" for="signals">
+          <span class="field-label">Structured signals <em>Optional</em></span>
+          <span class="field-help">Canonical JSON or CSV: diagnoses, MAR, diet orders, and therapy observations</span>
+          <input id="signals" name="signals" type="file" accept=".json,.csv,application/json,text/csv">
+          <span class="file-state" data-file-state="signals">No structured signal file selected</span>
+        </label>
+
+        <div id="form-error" class="error" role="alert" hidden></div>
+        <button id="analyze-button" class="primary" type="submit">Analyze uploaded case</button>
+      </form>
+
+      <aside class="method" aria-labelledby="method-title">
+        <div class="form-head">
+          <div>
+            <span class="step-number">02</span>
+            <h2 id="method-title">Evidence path</h2>
+          </div>
+        </div>
+        <ol>
+          <li><strong>Parse</strong><span>Read the as-coded MDS values and assessment date.</span></li>
+          <li><strong>Parse structured data</strong><span>Read MDS XML/JSON plus optional diagnosis, MAR, diet-order, and therapy signals.</span></li>
+          <li><strong>Recover document text</strong><span>Rasterize PDFs and run local Tesseract OCR page by page.</span></li>
+          <li><strong>Qualify evidence</strong><span>Apply deterministic context, conflict, citation, confidence, and look-back rules.</span></li>
+          <li><strong>Regroup</strong><span>Run as-coded and as-supported states through the CMS grouper.</span></li>
+          <li><strong>Review</strong><span>Return suggested item changes with source evidence for human confirmation.</span></li>
+        </ol>
+        <details>
+          <summary>Supported coding scope</summary>
+          <p>Structured evidence: two NTA diagnoses, six Section I primary classes, K0520C3, and selected GG tasks. Text evidence is always an uncounted review candidate. This is not a general autonomous medical coder.</p>
+        </details>
+      </aside>
+    </section>
+
+    <section id="loading" class="loading" aria-live="polite" hidden>
+      <div>
+        <span class="step-number">Processing</span>
+        <h2>Reading the uploaded record</h2>
+      </div>
+      <div class="loading-track" aria-hidden="true"><span></span></div>
+      <p id="loading-copy">Validating the assessment and document formats.</p>
+    </section>
+
+    <section id="results" class="results" aria-labelledby="results-title" hidden>
+      <div class="results-head">
+        <div>
+          <span class="step-number">03</span>
+          <h2 id="results-title">Review output</h2>
+        </div>
+        <button id="new-case" class="secondary" type="button">Start another case</button>
+      </div>
+      <div id="result-summary" class="summary"></div>
+      <div id="baseline-warning" class="baseline-warning" role="status" hidden></div>
+      <div id="finding-list" class="finding-list"></div>
+      <details class="run-detail">
+        <summary>Run provenance and decisions</summary>
+        <div id="run-detail"></div>
+      </details>
+    </section>
+  </main>
+
+  <footer>
+    <p>Suggestions require qualified clinical review. Scenario A is a classification materiality screen, not a claim-payment estimate.</p>
+  </footer>
+  <script src="/static/workbench.js" defer></script>
+</body>
+</html>

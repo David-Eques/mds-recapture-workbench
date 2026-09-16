@@ -1,0 +1,51 @@
+condition,mds_item,points
+HIV/AIDS,SNF claim (B20),8
+"Parenteral/IV Feeding: Level High","K0520A3,K0710A2",7
+"Special Treatments/Programs: Intravenous Medication, Post-admit",O0110H1B,5
+"Special Treatments/Programs: Ventilator or Respirator, Post-admit",O0110F1B,4
+"Parenteral/IV Feeding: Level Low","K0520A3,K0710A2,K0710B2",3
+Lung Transplant Status,I8000,3
+"Special Treatments/Programs: Transfusion, Post-admit",O0110I1B,2
+"Major Organ Transplant Status, Except Lung",I8000,2
+Active Diagnoses: Multiple Sclerosis,I5200,2
+Opportunistic Infections,I8000,2
+Active Diagnoses: Asthma COPD Chronic Lung Disease,I6200,2
+Bone/Joint/Muscle Infections/Necrosis (except Aseptic Necrosis of Bone),I8000,2
+Chronic Myeloid Leukemia,I8000,2
+Wound Infection,I2500,2
+Active Diagnoses: Diabetes Mellitus (DM),I2900,2
+Endocarditis,I8000,1
+Immune Disorders,I8000,1
+End-Stage Liver Disease,I8000,1
+Other Foot Skin Problems: Diabetic Foot Ulcer,M1040B,1
+Narcolepsy and Cataplexy,I8000,1
+Cystic Fibrosis,I8000,1
+"Special Treatments/Programs: Tracheostomy Care, Post-admit",O0110E1B,1
+Active Diagnoses: Multi-Drug Resistant Organism (MDRO),I1700,1
+"Special Treatments/Programs: Isolation, Post-admit",O0110M1B,1
+Specified Hereditary Metabolic/Immune Disorders,I8000,1
+Morbid Obesity,I8000,1
+"Special Treatments/Programs: Radiation, Post-admit",O0110B1B,1
+Stage 4 Unhealed Pressure Ulcer (presence),M0300D1,1
+Psoriatic Arthropathy and Systemic Sclerosis,I8000,1
+Chronic Pancreatitis,I8000,1
+Proliferative Diabetic Retinopathy and Vitreous Hemorrhage,I8000,1
+"Other Foot Skin Problems: Foot Infection / Other Open Lesion (except Diabetic Foot Ulcer)","M1040A,M1040C",1
+Complications of Specified Implanted Device or Graft,I8000,1
+Bladder and Bowel Appliances: Intermittent catheterization,H0100D,1
+Inflammatory Bowel Disease,I1300,1
+Aseptic Necrosis of Bone,I8000,1
+"Special Treatments/Programs: Suctioning, Post-admit",O0110D1B,1
+Cardio-Respiratory Failure and Shock,I8000,1
+Myelodysplastic Syndromes and Myelofibrosis,I8000,1
+"Systemic Lupus Erythematosus, Connective Tissue Disorders, Inflammatory Spondylopathies",I8000,1
+Diabetic Retinopathy (except Proliferative DR and Vitreous Hemorrhage),I8000,1
+Nutritional Approaches While a Patient: Feeding Tube,K0520B3,1
+Severe Skin Burn or Condition,I8000,1
+Intractable Epilepsy,I8000,1
+Active Diagnoses: Malnutrition,I5600,1
+Disorders of Immunity (except RxCC97: Immune Disorders),I8000,1
+Cirrhosis of Liver,I8000,1
+Bladder and Bowel Appliances: Ostomy,H0100C,1
+Respiratory Arrest,I8000,1
+Pulmonary Fibrosis and Other Chronic Lung Disorders,I8000,1

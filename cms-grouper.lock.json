@@ -1,0 +1,47 @@
+{
+  "version": "2.4000",
+  "source_url": "https://www.cms.gov/files/zip/pdpm-grouper-jar-package-v2-4000.zip",
+  "archive_sha256": "039a9bce8c61426af9329432ef13e655020b7849838e8464e3cd2368af14f31a",
+  "members": [
+    {
+      "archive_path": "SNF.V24.R0.PC.Install.T/jars/snf-component-2.4.0.0.jar",
+      "output_path": "jars/snf-component-2.4.0.0.jar",
+      "sha256": "3013acde6322301c7fbd8aa11037f3011b351ded8bf1cd1b27841871a615d6ec"
+    },
+    {
+      "archive_path": "SNF.V24.R0.PC.Install.T/jars/lib/gfc-base-api-3.4.9.jar",
+      "output_path": "jars/lib/gfc-base-api-3.4.9.jar",
+      "sha256": "43b587643236219453212a70f3bd46cf2396aae07ae098f68a209f9ccd6da10e"
+    },
+    {
+      "archive_path": "SNF.V24.R0.PC.Install.T/jars/lib/protobuf-java-3.21.7.jar",
+      "output_path": "jars/lib/protobuf-java-3.21.7.jar",
+      "sha256": "a204ec68748a7b26351ae37a311e8de468f248d1916d5f8dbe812c1289d0a0ff"
+    },
+    {
+      "archive_path": "SNF.V24.R0.PC.Install.T/jars/lib/slf4j-api-2.0.5.jar",
+      "output_path": "jars/lib/slf4j-api-2.0.5.jar",
+      "sha256": "f4a2974509291acc49fda4a79b0d59e15e2b524095d6421c66391b92387af4c9"
+    },
+    {
+      "archive_path": "SNF.V24.R0.PC.Install.T/jars/lib/slf4j-simple-2.0.5.jar",
+      "output_path": "jars/lib/slf4j-simple-2.0.5.jar",
+      "sha256": "a28c64b8a1d61f769fd24e1193ec354ffee5b03063a37602dd70aa09503101f2"
+    },
+    {
+      "archive_path": "SNF.V24.R0.PC.Install.T/jars/lib/snf-proto-1.2.0.jar",
+      "output_path": "jars/lib/snf-proto-1.2.0.jar",
+      "sha256": "f03c0ca77bd63de3dc1abe17e750c0b8f73f87425ba7862249351435660542ab"
+    }
+  ],
+  "notices": [
+    {
+      "archive_path": "SNF.V24.R0.PC.Install.T/OpenSourceLicenseDisclosures.pdf",
+      "output_path": "notices/OpenSourceLicenseDisclosures.pdf"
+    },
+    {
+      "archive_path": "SNF.V24.R0.PC.Install.T/PDPM Grouper JAR Package V2.4000.pdf",
+      "output_path": "notices/PDPM-Grouper-JAR-Package-V2.4000.pdf"
+    }
+  ]
+}

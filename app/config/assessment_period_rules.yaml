@@ -1,0 +1,39 @@
+# Assessment-period rules (ARD/IPA spec §5). Resolution is EXACT on
+# (item_id, subitem_id, column_id, assessment_type). Any unresolved item FAILS CLOSED.
+# window_kind is REQUIRED on every rule (fixed | lookback | prior_to_anchor):
+#   fixed           -> [anchor + start_offset, anchor + end_offset]
+#   lookback        -> [anchor - (lookback_days - 1), anchor]   (ends ON the anchor)
+#   prior_to_anchor -> [anchor - lookback_days, anchor - 1]     (ends the DAY BEFORE the anchor)
+# At-Discharge columns are intentionally ABSENT (discharge assessment; out of Mode A/B and recapture scope).
+# K0510 is REJECTED — K0520 only (FY2026). Section GG admission anchors to part_a_start (A2400B), NOT the ARD.
+
+rules:
+  # ---- O0110 Special Treatments / Procedures ----
+  - {item_id: O0110, column_id: on_admission,   assessment_type: 5_day, anchor: part_a_start, window_kind: fixed,    start_offset_days: 0, end_offset_days: 2}
+  - {item_id: O0110, column_id: while_resident, assessment_type: 5_day, anchor: ard,          window_kind: lookback, lookback_days: 14}
+  - {item_id: O0110, column_id: while_resident, assessment_type: ipa,   anchor: ard,          window_kind: lookback, lookback_days: 14}
+
+  # ---- K0520 Nutritional Approaches (NOT K0510) ----
+  - {item_id: K0520, column_id: on_admission,       assessment_type: 5_day, anchor: part_a_start,            window_kind: fixed,           start_offset_days: 0, end_offset_days: 2}
+  - {item_id: K0520, column_id: while_not_resident, assessment_type: 5_day, anchor: admission_entry_reentry, window_kind: prior_to_anchor, lookback_days: 7}   # pre-entry days; ends DAY BEFORE entry
+  - {item_id: K0520, column_id: while_resident,     assessment_type: 5_day, anchor: ard,                     window_kind: lookback,        lookback_days: 7}
+  - {item_id: K0520, column_id: while_resident,     assessment_type: ipa,   anchor: ard,                     window_kind: lookback,        lookback_days: 7}
+
+  # ---- K0100 Swallowing disorder (genuinely ARD-sensitive) ----
+  - {item_id: K0100, assessment_type: 5_day, anchor: ard, window_kind: lookback, lookback_days: 7}
+  - {item_id: K0100, assessment_type: ipa,   anchor: ard, window_kind: lookback, lookback_days: 7}
+
+  # ---- Section I active diagnoses ----
+  # Two-step: 60-day documentation window + 7-day active-status window, both ending on the ARD.
+  # The active-status step is the lookback rule below; the 60-day documentation step is applied in
+  # app/codeability/active_diagnosis.py (physician_documented within 60 days of ARD).
+  - {item_id: I_default, assessment_type: 5_day, anchor: ard, window_kind: lookback, lookback_days: 7, special_criteria: null}
+  - {item_id: I2300,     assessment_type: 5_day, anchor: ard, window_kind: lookback, lookback_days: 30, special_criteria: uti_mcgeer_nhsn_loeb}
+
+  # ---- Section GG ----
+  - {item_id: GG_admission, assessment_type: 5_day, anchor: part_a_start, window_kind: fixed, start_offset_days: 0, end_offset_days: 2}   # NOT ARD-anchored
+  - {item_id: GG_col5,      assessment_type: ipa,   anchor: ard,          window_kind: fixed, start_offset_days: -2, end_offset_days: 0}  # IPA interim performance (column 5)
+
+  # ---- Sections C / D : flagged, never optimized ----
+  - {item_id: C_BIMS, assessment_type: 5_day, anchor: ard, window_kind: lookback, lookback_days: 7, special_criteria: no_optimize_clinical_only}
+  - {item_id: D_PHQ,  assessment_type: 5_day, anchor: ard, window_kind: lookback, lookback_days: 7, special_criteria: no_optimize_clinical_only}

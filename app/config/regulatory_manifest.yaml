@@ -1,0 +1,48 @@
+# Pinned FY2026 inputs used by the public workbench.
+fiscal_year: 2026
+
+snf_pps_final_rule:
+  cms_id: "CMS-1827-F"
+  effective: "2025-10-01"
+
+rai_manual:
+  version: "v1.20.1"
+  effective: "2025-10-01"
+
+mds_item_sets:
+  version: "v1.20.1v4"
+  effective: "2025-10-01"
+
+mds_data_specs:
+  version: "V3.10.2 FINAL"
+  errata: "V3.10.3"
+  production: "2025-10-01"
+
+pdpm_grouper:
+  version: "V2.4000"
+  reports_as: "2.4000"
+  runtime_java: 17
+  primary_jar_sha256: "3013acde6322301c7fbd8aa11037f3011b351ded8bf1cd1b27841871a615d6ec"
+  io_formats: ["mds_xml", "fixed_length_string"]
+
+base_rates:
+  urban:
+    PT: "75.73"
+    OT: "70.49"
+    SLP: "28.28"
+    Nursing: "132.00"
+    NTA: "99.59"
+    non_case_mix: "118.21"
+  rural:
+    PT: "86.33"
+    OT: "79.29"
+    SLP: "35.63"
+    Nursing: "126.12"
+    NTA: "95.15"
+    non_case_mix: "120.40"
+
+cmi_table_file: "case_mix_indexes_fy2026.csv"
+cmi_note: "FY2026 CMIs equal FY2025; pre-FY2020 CMIs are not used."
+labor_related_share: "0.719"
+nutritional_approaches_item: "K0520"
+mechanically_altered_diet_item: "K0520C3"
